@@ -2,7 +2,6 @@
   "name": "rc-challenge",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://ramaseshan210.ghithub.io/rc-challenge",
   "dependencies": {
     "@bigbinary/neetoui": "git+https://github.com/bigbinary/neeto-ui.git",
     "@craco/craco": "^6.2.0",
