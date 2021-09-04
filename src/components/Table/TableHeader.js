@@ -4,13 +4,12 @@ import React from "react";
 const TableHeader = () => {
   return (
     <>
-    <thead> 
+    <thead className=""> 
     <tr className="">
-  
-      <th className="text-sm font-medium">
+      <th className="text-sm font-medium ">
         No
       </th>
-      <th className="text-sm font-medium">
+      <th className="text-sm font-medium ">
         Launched(UTC)
       </th>
       <th className="text-sm font-medium">

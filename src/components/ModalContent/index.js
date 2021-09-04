@@ -1,8 +1,8 @@
 import React from 'react'
-import TableRowForModal from '../TableRowForModal';
+import TableRowForModal from './TableRowForModal';
 
 const ModalContent = ({info}) => {
-  console.log(info);
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row  ">
@@ -26,13 +26,12 @@ const ModalContent = ({info}) => {
             <div className="flex yt-logo px-1">
               <img src={"https://www.pngix.com/pngfile/big/195-1952686_social-media-clipart-tumblr-transparent-youtube-icon-white.png"}/>
             </div>
-
           </div>
-
-          
         </div>
         <div className="flex  border-black">
-        {info.launch_success ? <h1 className=" flex text-xs p-3 justify-center items-center rounded-2xl text-green-600   h-2 bg-green-100 mx-2 ">Success</h1>:<h1 className="  flex justify-center items-center  h-2 text-xs p-3 rounded-2xl text-red-800 bg-red-100 mx-2">Failed</h1>}
+        {info.launch_success ? 
+        <h1 className=" flex text-xs p-3 justify-center items-center rounded-2xl text-green-600   h-2 bg-green-100 mx-2 ">Success</h1>:
+        <h1 className="  flex justify-center items-center  h-2 text-xs p-3 rounded-2xl text-red-800 bg-red-100 mx-2">Failed</h1>}
         </div>
       </div>
         <div className=" float-left mx-2 leading-7  text-md tracking-wide mt-8">  

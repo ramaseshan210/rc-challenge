@@ -2,45 +2,53 @@ import React from "react";
 import { useEffect,useState } from "react";
 import axios from "axios";
 import spacex from "../images/spacex.png"
-import Table from "./Table";
 import { Pagination } from "@bigbinary/neetoui";
 import {Dropdown} from "@bigbinary/neetoui"
-import Checking from "../components/Checking" 
+import Checking from "./Checking"
+import { Input } from "@bigbinary/neetoui";
 
-
-
+{/*tHE App contains the details of the spacex rockets launches and its details regarding it.
+You can see all the detailed information and launched details through a Table whether its upcoming ,success or failed one.
+Main components are 
+1.an input tag to search for location and mission names of same
+2.right side- we have a dropdown with options of different launches
+3.at the bottom we have pagination component to change the page 
+4. A table regarding all launches
+5.when clicked each row,we wil be able to see a modal with specific detailed information.
+*/}
 
 function App() {
 
-const[loading,setLoading] = useState(true);
+const[loading,setLoading] = useState(true);//for changing load state
 const options=["All Launches",  "Upcoming Launches","Successful Launches","Failed Launches"]
-const opt=['Success','Upcoming','Failed']
-const [info,setInfo] = useState([]);
- const [label,setLabel] = useState('All Launches');
-const [currentPage,setCurrentPage] = useState(1);
-const [rowsPerPage,setRowsPerPage]= useState(10);
-const [data,setData]= useState([]);
-const [pageNo,setPageNo] = useState(1);
-const [array,setArray] = useState([]);
+const opt=['Success','Upcoming','Failed']//options for showing whether its s,f,or failed.
+const [label,setLabel] = useState('All Launches');//for changing label as per need
+const [currentPage,setCurrentPage] = useState(1);//setting for pagination
+const [rowsPerPage,setRowsPerPage]= useState(10);//setting rows per page for pagination
+const [data,setData]= useState([]);//store api fetched data
+const [pageNo,setPageNo] = useState(1);//setting pageNo for pagination
+const [input,setInput] = useState("");
 const [disabled,setDisabled] = useState(false);
+const [totalrows,setTotalRows]= useState(data.length);//for setting the total rows in pagination
+const inputEl = React.createRef();//for focusing the input
+const [prev,setPrev]=useState();
 var i=0;
+
 useEffect(() => {
-   
+inputEl.current.focus()//focus the input
 fetchTasks();
 }, [])
 
 //get current posts
 const indexOfLastPost = pageNo * rowsPerPage;
 const indexOfFirstPost = indexOfLastPost - rowsPerPage; 
-console.log("page");
-console.log(pageNo);
-const totalRows = data.length;
+
+
 const pageNumbers = [];
-const [checkvalue,setCheckvalue] = useState(1);
-const [up,setUp] = useState(false);
-const [flag,setFlag]= useState(false);
+const [checkvalue,setCheckvalue] = useState(1);//for navigate () as prop in pagination comp
+
 //get pageNumber
-for(let i=1;i<=Math.ceil(totalRows/rowsPerPage);i++)
+for(let i=1;i<=Math.ceil(totalrows/rowsPerPage);i++)
 {
   pageNumbers.push(i);
 }                 
@@ -48,41 +56,28 @@ const labelclass=<div className="flex justify-between">
   <div className="flex px-2 ">
   <div className=" flex ri-filter-line mr-2  ">
   </div>
- 
   <div className="flex  justify-between  text-sm word-spacing items-center font-sans  ">
   {label}
   </div>
   </div>
 </div>
+
 //Change Page
 const paginate=(pageNumber)=>setCurrentPage(pageNumber);
+
 //navigate for pagination
 function navigate(event){
-  console.log(event);
-  console.log(checkvalue);
+ 
   if(event<checkvalue)
   {
-    console.log("jello")
     setPageNo(pageNo-1);
-    
-  
-  }else{
-  
- setPageNo(pageNo+1);
-  
-
+  }else{ 
+        setPageNo(pageNo+1);
+      }
+    setCheckvalue(event);
   }
-  setCheckvalue(event);
-  
-}
-//dataSwap function
 
-
-//pagination at single page upto 10
-
-
-
-const fetchTasks= ()=>{
+const fetchTasks= ()=>{ //called from useeffect ()
 
   setLoading(true);
   axios.get("https://api.spacexdata.com/v3/launches/past ")
@@ -92,10 +87,6 @@ const fetchTasks= ()=>{
 console.log(allNotes);
 setData(allNotes);
 setLoading(false);
-console.log(loading);
-console.log("hihi");
-
-
 })
 
 .catch(error=>console.error(`Error: ${error}`));
@@ -104,58 +95,54 @@ console.log("hihi");
 
   return (
     <div className="flex  mt-4 border-2 flex-col">
-     
       <div className="flex  mt-6  justify-center items-center border-black">
           <div className="flex border-black ">
-             <img src={spacex} className="h-10 flex justify-center items-center"/>
+            <img src={spacex} className="h-10 flex justify-center items-center"/>
           </div>
+        </div>
+      <div className="flex flex-row justify-between ml-40 items-center">
+      <div className="margin  mt-20">
+        <Input ref={inputEl} value={input} onChange={(e)=>{setInput(e.target.value);setPageNo(1);setCheckvalue(1)}}/>
       </div>
-     
-      <div className=" flex font flex-row-reverse pr-40">
+      <div className=" flex font flex-row-reverse pr-40 mt-20">
             <Dropdown 
                 label={labelclass}
                 buttonStyle="text"
                 icon="ri-arrow-down-s-line"
-              >
+                position="bottom-right"
+            >
                 {options.map((option,index)=>{
                     return(
-                  <li  key={index} 
-                    onClick={()=>{setLabel(option)}}>
+                        <li  key={index} 
+                        onClick={(e)=>{
+                        setPrev(label);
+                        setLabel(option);
+                        setInput("");
+                        setPageNo(1);
+                        setCheckvalue(1); }}>
                       
-                    <div className="flex"> {option}</div> 
-              
-                  </li>
-
-                )})}
+                          <div className="flex" > {option}</div> 
+                        </li>
+                   
+                       )})}
             </Dropdown>
-            
-          </div>
-
-          <Checking data={data} 
+      </div>
+    </div>
+          
+        <Checking data={data} 
           label={label}
           indexOfFirstPost={indexOfFirstPost}
           indexOfLastPost={indexOfLastPost}
           setDisabled={setDisabled}
           setLabel={setLabel}
-          loading={loading}            
-                    
-          />
-          
-        
-
-
-        <div className="mt-10  justify-center items-center ">
-        
-          {/*<Pagination rowsPerPage={rowsPerPage} 
-          totalRows={data.length}
-                    paginate={paginate}/>*/}
-
-         <Pagination className="ml-20" count={data.length} emptyPageMsg="no records bro" pageSize={rowsPerPage} pageNo={pageNo} navigate={(event)=>navigate(event)} />
-        </div>
-     
-   
-     
-    </div>
+          loading={loading}   
+          input={input}  
+          setTotalRows={setTotalRows}
+          setPageNo={setPageNo}/>
+        <div className="mt-10  pl-20 justify-center items-center ">
+         <Pagination className=" " count={totalrows} emptyPageMsg="no records bro" pageSize={rowsPerPage} pageNo={pageNo} navigate={(event)=>navigate(event)} />
+        </div>  
+     </div>
    
 
   );
