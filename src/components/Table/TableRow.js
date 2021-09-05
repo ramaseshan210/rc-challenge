@@ -5,7 +5,7 @@ import React from "react";
 const TableRow = ({data,label,setOpen,open,setInfo,id}) => {
   
   const style="flex justify-center item-center text-sm mx-6 ";
-  
+ var date=new Date(data.launch_date_utc);
   return (
       <>
     
@@ -20,7 +20,7 @@ const TableRow = ({data,label,setOpen,open,setInfo,id}) => {
               </h1>
             </td>
             <td>
-              <h1 className={style}> {data.launch_date_utc}</h1>
+              <h1 className={style}> {date.toDateString()} {date.toLocaleTimeString()}</h1>
             </td>
             <td>
               <h1 className={style}>{data.launch_site.site_name}</h1>
