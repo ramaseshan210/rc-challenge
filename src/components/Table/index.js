@@ -7,8 +7,8 @@ import Loading from "../Common/Loading"
 import Emptystate from "../Common/Emptystate";
 
 
-const Table = ({data,label,loading}) => {
-
+const Table = ({data,label,loading,pageNo}) => {
+  console.log(pageNo)
   const[open,setOpen]= useState(false);
   const [info,setInfo] = useState([]);//for modal updation
   return (
@@ -32,7 +32,8 @@ const Table = ({data,label,loading}) => {
                                     setOpen={setOpen} 
                                     setInfo={setInfo} 
                                     loading={loading}
-                                    id={index}
+                                    id={pageNo===1?index+1:(pageNo*10)-10+(index+1)}
+                                 
                                     />
                                   })}
             <Modal isOpen={open}

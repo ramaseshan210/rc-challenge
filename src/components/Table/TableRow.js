@@ -3,9 +3,11 @@ import React from "react";
 
 
 const TableRow = ({data,label,setOpen,open,setInfo,id}) => {
-  
+
   const style="flex justify-center item-center text-sm mx-6 ";
  var date=new Date(data.launch_date_utc);
+
+
   return (
       <>
     
@@ -16,7 +18,7 @@ const TableRow = ({data,label,setOpen,open,setInfo,id}) => {
              key={data.flight_number}>
             <td>
               <h1 className={style}>
-                {id+1}
+                {id}
               </h1>
             </td>
             <td>

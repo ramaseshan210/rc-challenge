@@ -138,6 +138,7 @@ setLoading(false);
           loading={loading}   
           input={input}  
           setTotalRows={setTotalRows}
+          pageNo={pageNo}
           setPageNo={setPageNo}/>
         <div className="mt-10  pl-20 justify-center items-center ">
          <Pagination className=" " count={totalrows} emptyPageMsg="no records bro" pageSize={rowsPerPage} pageNo={pageNo} navigate={(pageNo)=>navigate(pageNo)} siblingCount={100} />

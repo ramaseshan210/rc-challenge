@@ -13,6 +13,7 @@ const Checking = ({data,
                   loading,
                   setTotalRows,
                   setPageNo,
+                  pageNo,
                 
                   input}) => {
  
@@ -69,6 +70,7 @@ return (
          opt={opt} 
          label={label}
           loading={loading}
+          pageNo={pageNo}
         />
     </>
   )
