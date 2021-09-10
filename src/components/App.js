@@ -53,10 +53,10 @@ for(let i=1;i<=Math.ceil(totalrows/rowsPerPage);i++)
   pageNumbers.push(i);
 }                 
 const labelclass=<div className="flex justify-between">
-  <div className="flex px-2 ">
-  <div className=" flex ri-filter-line mr-2  ">
+  <div className="flex px-2">
+  <div className=" ri-filter-line mr-2  ">
   </div>
-  <div className="flex  justify-between  text-sm word-spacing items-center font-sans  ">
+  <div className=" text-sm word-spacing  font-sans  ">
   {label}
   </div>
   </div>
@@ -68,13 +68,9 @@ const paginate=(pageNumber)=>setCurrentPage(pageNumber);
 //navigate for pagination
 function navigate(event){
  
-  if(event<checkvalue)
-  {
-    setPageNo(pageNo-1);
-  }else{ 
-        setPageNo(pageNo+1);
-      }
-    setCheckvalue(event);
+ {event<checkvalue?setPageNo(pageNo-1):
+  setPageNo(pageNo+1)}
+  setCheckvalue(event);
   }
 
 const fetchTasks= ()=>{ //called from useeffect ()
@@ -94,17 +90,17 @@ setLoading(false);
 }
 
   return (
-    <div className="flex  mt-4 border-2 flex-col">
-      <div className="flex  mt-6  justify-center items-center border-black">
-          <div className="flex border-black ">
-            <img src={spacex} className="h-10 flex justify-center items-center"/>
-          </div>
-        </div>
+    <>
+      <div className="flex  mt-6  justify-center ">
+            <img src={spacex} className="h-10 flex  mt-6 justify-center "/>
+      </div>
       <div className="flex flex-row justify-between ml-40 items-center">
       <div className="margin  mt-20">
-        <Input ref={inputEl} value={input} onChange={(e)=>{setInput(e.target.value);setPageNo(1);setCheckvalue(1)}}/>
+        <Input ref={inputEl} value={input} 
+        onChange={(e)=>{setInput(e.target.value);
+        setPageNo(1);setCheckvalue(1)}}/>
       </div>
-      <div className=" flex font flex-row-reverse pr-40 mt-20">
+      <div className="pr-40 mt-20">
             <Dropdown 
                 label={labelclass}
                 buttonStyle="text"
@@ -121,7 +117,7 @@ setLoading(false);
                         setPageNo(1);
                         setCheckvalue(1); }}>
                       
-                          <div className="flex" > {option}</div> 
+                          <div className="" > {option}</div> 
                         </li>
                    
                        )})}
@@ -143,7 +139,7 @@ setLoading(false);
         <div className="mt-10  pl-20 justify-center items-center ">
          <Pagination className=" " count={totalrows} emptyPageMsg="no records bro" pageSize={rowsPerPage} pageNo={pageNo} navigate={(pageNo)=>navigate(pageNo)} siblingCount={100} />
         </div>  
-     </div>
+     </>
    
 
   );

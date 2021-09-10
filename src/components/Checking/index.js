@@ -8,13 +8,9 @@ const Checking = ({data,
                   indexOfFirstPost,
                   indexOfLastPost,
                   opt,
-                  setDisabled,
-                  SetLabel,
                   loading,
                   setTotalRows,
-                  setPageNo,
                   pageNo,
-                
                   input}) => {
  
   var array = [];
@@ -22,7 +18,8 @@ const Checking = ({data,
   var i=0;
   var j=0;
  
-  data.map((data)=>{
+  data.map((data)=>{  
+    
 
       if(data.launch_success===false && label==="Failed Launches")
       {

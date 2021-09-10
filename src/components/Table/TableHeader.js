@@ -1,32 +1,20 @@
 import React from "react";
 
 
-const TableHeader = () => {
+const TableHeader = ({HeaderData}) => {
+
+  const style="text-sm  font-normal text-color-grey-800 opacity-90 ";
   return (
     <>
     <thead className=""> 
     <tr className="">
-      <th className="text-sm font-medium ">
-        No
-      </th>
-      <th className="text-sm font-medium ">
-        Launched(UTC)
-      </th>
-      <th className="text-sm font-medium">
-      Location
-      </th>
-      <th className="text-sm font-medium">
-        Mission
-      </th>
-      <th className="text-sm font-medium">
-        Orbit
-      </th>
-      <th className="text-sm font-medium">
-        Launch Status
-      </th>
-      <th className="text-sm font-medium ">
-        Rocket
-      </th>
+      {HeaderData.map((header,index)=>{
+        return (  <th key={index} className={style}>
+       {header}
+      </th>)
+        
+      })}
+   
     </tr>
     </thead>
     </>

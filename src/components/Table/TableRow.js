@@ -4,7 +4,7 @@ import React from "react";
 
 const TableRow = ({data,label,setOpen,open,setInfo,id}) => {
 
-  const style="flex justify-center item-center text-sm mx-6 ";
+  const style="flex justify-center item-center text-xs mx-6 ";
  var date=new Date(data.launch_date_utc);
 
 
