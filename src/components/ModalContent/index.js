@@ -1,6 +1,7 @@
 import React from 'react'
 import TableRowForModal from './TableRowForModal';
-
+import youtubeicon from "../../images/youtubeicon.png"
+import wiki from "../../images/wiki.png"  
 const ModalContent = ({info}) => {
 
   return (
@@ -20,11 +21,11 @@ const ModalContent = ({info}) => {
             <div className="flex links-logo ">
             <img src={"https://www.pinclipart.com/picdir/big/71-713438_nasa-logo-font-nasa-black-and-white-clipart.png"}/>
             </div>
-            <div className="flex w-logo px-1">
-              <img src={"https://scontent.fcok12-1.fna.fbcdn.net/v/t1.18169-9/28576058_10156026405618346_4379043427201638550_n.jpg?_nc_cat=102&ccb=1-4&_nc_sid=09cbfe&_nc_ohc=SwqvnwEH_S4AX8Uh269&_nc_ht=scontent.fcok12-1.fna&oh=f2587def3fab4438288c1b94574124c1&oe=613A8D64"}/>
+            <div className="flex w-logo ">
+              <img src={wiki}/>
             </div>
-            <div className="flex yt-logo px-1">
-              <img src={"https://www.pngix.com/pngfile/big/195-1952686_social-media-clipart-tumblr-transparent-youtube-icon-white.png"}/>
+            <div className="flex yt-logo ">
+              <img src={youtubeicon}/>
             </div>
           </div>
         </div>
