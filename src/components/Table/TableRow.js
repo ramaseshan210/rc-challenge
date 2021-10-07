@@ -1,46 +1,45 @@
+import classNames from "classnames";
 import React from "react";
 
 
 
-const TableRow = ({data,label,setOpen,open,setInfo,id}) => {
+const TableRow = ({data,setOpen,open,setInfo,id}) => {
 
-  const style="flex justify-center item-center text-xs mx-6 ";
+
  var date=new Date(data.launch_date_utc);
 
 
   return (
       <>
     
-      <tbody>
+  
          
-        <tr  className="hover:bg-green-100 cursor-pointer "
+        <tr  className="hover:bg-green-100 cursor-pointer   text-xs mx-8"
              onClick={()=>{setOpen(!open); setInfo(data);}} 
              key={data.flight_number}>
-            <td>
-              <h1 className={style}>
+            <td className="text-xs text-center ">
                 {id}
-              </h1>
             </td>
-            <td>
-              <h1 className={style}> {date.toDateString()} {date.toLocaleTimeString()}</h1>
+            <td className="text-center   ">
+              {date.toDateString()} {date.toLocaleTimeString()}
             </td>
-            <td>
-              <h1 className={style}>{data.launch_site.site_name}</h1>
+            <td className="text-center">
+             {data.launch_site.site_name}
             </td>
-            <td>
-              <h1 className={style}>{data.mission_name}</h1>
+            <td className="text-center">
+             {data.mission_name}
             </td>
-            <td>
-              <h1 className={style}>  {data.rocket.second_stage.payloads[0].orbit}</h1>
+            <td className="text-center" >
+              {data.rocket.second_stage.payloads[0].orbit}
             </td>
-            <td>
-              {data.launch_success ? <h1 className=" flex justify-center items-center  text-sm p-3  rounded-2xl text-green-600  my-5 h-2 bg-green-100 mx-6  ">Success</h1>:<h1 className="  flex justify-center items-center  h-2 text-sm p-3 rounded-2xl text-red-800 my-5 bg-red-100 mx-6">Failed</h1>}
+            <td className={classNames(`flex justify-center items-center rounded-2xl my-3  w-20 ml-12 bg-red-100 text-red-700 `,{"bg-green-100 text-green-600":data.launch_success===true,"bg-yellow text-red-200":data.upcoming==="Upcoming"})}>
+             {data.launch_success?'Success':'Failed'}
             </td>
-            <td>
-              <h1 className={style}> {data.rocket.rocket_name}</h1>
+            <td className="text-center">
+              {data.rocket.rocket_name}
             </td>
           </tr>
-        </tbody>
+        
 </>
     
   );

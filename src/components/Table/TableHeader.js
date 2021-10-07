@@ -3,21 +3,20 @@ import React from "react";
 
 const TableHeader = ({HeaderData}) => {
 
-  const style="text-sm  font-normal text-color-grey-800 opacity-90 ";
+  const style="";
   return (
-    <>
-    <thead className=""> 
-    <tr className="">
+  
+   <tbody>
+  
       {HeaderData.map((header,index)=>{
-        return (  <th key={index} className={style}>
+        return (  <th key={index} className="sticky text-xs tracking-wider text-right  font-normal">
        {header}
       </th>)
         
       })}
+  
+    </tbody>
    
-    </tr>
-    </thead>
-    </>
   );
 };
 

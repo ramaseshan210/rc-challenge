@@ -7,16 +7,16 @@ const Checking = ({data,
                   label,
                   indexOfFirstPost,
                   indexOfLastPost,
-                  opt,
+               
                   loading,
                   setTotalRows,
                   pageNo,
                   input}) => {
  
-  var array = [];
-  var arrays = [];//to swap the filtered content
-  var i=0;
-  var j=0;
+  let array = [];
+  let arrays = [];//to swap the filtered content
+ let i=0;
+ let j=0;
  
   data.map((data)=>{  
     
@@ -59,13 +59,12 @@ const Checking = ({data,
     j=j+1;
     
   })}
-    setTotalRows(arrays.length)
+    setTotalRows(arrays.length);
     
 return (
     <>
         <Table data={arrays.slice(indexOfFirstPost,indexOfLastPost)}
-         opt={opt} 
-         label={label}
+      
           loading={loading}
           pageNo={pageNo}
         />
