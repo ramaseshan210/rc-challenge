@@ -6,7 +6,7 @@ module.exports = {
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+       
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -21,5 +21,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        
     }
 };

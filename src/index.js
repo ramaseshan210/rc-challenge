@@ -1,16 +1,15 @@
+/* eslint no-use-before-define: ["off", { "classes": false }] */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './stylesheets/main.scss'
-import 'remixicon/fonts/remixicon.css'
+import './stylesheets/main.scss';
+import 'remixicon/fonts/remixicon.css';
 
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
- 
-    <App />
- ,
-  document.getElementById('root')
+  <App />,
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
