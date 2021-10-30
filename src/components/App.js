@@ -73,8 +73,8 @@ function App() {
 
   return (
     <div>
-      <div className="flex mt-6 justify-center ">
-        <img src={spacex} alt="" className="h-10 flex mt-6 justify-center " />
+      <div className="flex  mt-6  justify-center ">
+        <img src={spacex} alt="" className="h-10 flex  mt-6 justify-center " />
       </div>
       <div className="flex flex-row justify-between ml-40 items-center">
         <div className="margin  mt-20">
@@ -95,7 +95,7 @@ function App() {
             icon="ri-arrow-down-s-line"
             position="bottom-right"
             autoWidth
-            className="flex items-center justify-center size "
+            className="flex items-center  justify-center  size "
           >
             {filters.map((filter, index) => { 
               return (
@@ -129,12 +129,7 @@ function App() {
         setPageNo={setPageNo} 
       />
       <div className="flex flex-row-reverse pr-40 mt-10">
-        <Pagination 
-          count={totalrows} 
-          emptyPageMsg="no records bro" 
-          pageSize={rowsPerPage} pageNo={pageNo} 
-          navigate={(pageNo) => navigate(pageNo)} 
-          siblingCount={100} />
+        <Pagination count={totalrows} emptyPageMsg="no records bro" pageSize={rowsPerPage} pageNo={pageNo} navigate={(pageNo) => navigate(pageNo)} siblingCount={100} />
       </div>  
     </div>
 
